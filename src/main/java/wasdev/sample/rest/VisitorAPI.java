@@ -65,7 +65,7 @@ public class VisitorAPI extends Application {
 		for (Visitor doc : store.getAll()) {
 			String name = doc.getName();
 			if (name != null){
-				names.add(name);
+				names.add(name),
 			}
 		}
 		return new Gson().toJson(names);
@@ -102,6 +102,8 @@ public class VisitorAPI extends Application {
     	  return String.format("Hello %s!", visitor.getName());
       }
       store.persist(visitor);
+      store.persist("Password");
+      store.persist("email");
       return String.format("Hello %s! I've added you to the database.", visitor.getName());
 
     }
