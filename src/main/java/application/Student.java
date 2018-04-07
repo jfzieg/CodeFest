@@ -79,9 +79,20 @@ public class Student {
     }
 
     // compare to requirements and return fields missing or an empty array
-    public ArrayList<String> missingSkills(ArrayList<String> reqs) {
+    public ArrayList<String> missingFields(ArrayList<String> reqs) {
+        int looprun=0;
+        Set<String>fieldKeys=fields.keySet();
+        ArrayList<String> fieldsAL=new ArrayList<String>(fieldKeys);
+        while (looprun<reqs.size()){
+            if(fieldsAL.contains(reqs.get(looprun))){
+                reqs.remove(looprun);
+            }else{
+                looprun++;
+            }
+        }
         return reqs;
     }
+
 
     private static HashMap sortByValues(HashMap map) {
         List list = new LinkedList(map.entrySet());
