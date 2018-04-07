@@ -10,7 +10,7 @@ public class main {
     	Scanner sc = new Scanner(System.in);
 
         while (running) {
-    		System.out.println("Welcom to 5th Year");
+    		System.out.println("Welcome to 5th Year");
     		System.out.println("Please enter your info.");
     		System.out.print("First Name:");
     		String fName = sc.nextLine();
@@ -20,8 +20,12 @@ public class main {
     		String majors = sc.nextLine();
     		System.out.print("Minor(s):");
     		String minors = sc.nextLine();
+    		Student student = new Student();
+    		student.setName(fName + " " + lName);
+    		student.enterMajors(majors);
+    		student.enterMinors(minors);
     		System.out.println("What would you like to do?");
-    		System.out.println("(1)Add class\n(2) ");
+    		System.out.println("(1)Add class\n(2)");
         }
     }
 
