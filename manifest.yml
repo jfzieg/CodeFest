@@ -3,5 +3,5 @@ applications:
  - name: GetStartedJava
    random-route: true
    path: target/GetStartedJava.war
-   memory: 256M
+   memory: 128M
    instances: 1

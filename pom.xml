@@ -16,6 +16,16 @@
 
     <name>Bluemix Getting Started</name>
     <url>https://bluemix.net</url>
+    
+    <repositories>
+  		<repository>
+      		<id>snowtide-releases</id>
+      		<url>http://maven.snowtide.com/releases</url>
+      		<releases>
+          		<enabled>true</enabled>
+      		</releases>
+  		</repository>
+	</repositories>
 
     <licenses>
         <license>
@@ -80,6 +90,13 @@
     	<scope>test</scope>
 	</dependency>
 	
+
+		<dependency>
+			<groupId>com.snowtide</groupId>
+			<artifactId>pdfxstream</artifactId>
+			<version>3.5.0</version>
+		</dependency>
+
     </dependencies>
 
     <build>
