@@ -76,14 +76,31 @@
 			<artifactId>java-sdk</artifactId>
 			<version>5.1.1</version>
 		</dependency>
+		
+		<dependency>
+        	<groupId>org.json</groupId>
+        	<artifactId>json</artifactId>
+        	<version>20180130</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.12</version>
+    	<scope>test</scope>
+	</dependency>
+	
+
 		<dependency>
 			<groupId>com.snowtide</groupId>
 			<artifactId>pdfxstream</artifactId>
 			<version>3.5.0</version>
 		</dependency>
+
     </dependencies>
 
     <build>
+    <defaultGoal>install</defaultGoal>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -91,6 +108,14 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
                     <configuration>
+                    <archive>
+                    <manifest>
+                        <!-- <addClasspath>true</addClasspath> -->
+                        <mainClass>twaren.elk.elkMaven.App</mainClass>
+                    </manifest>
+                </archive>
+                    	<disableXmlReport>true</disableXmlReport>
+          				<useFile>false</useFile>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                         <warName>GetStartedJava</warName>
                     </configuration>
