@@ -13,6 +13,6 @@ public class Test {
 				"encapsulation, polymorphism, inheritance, and virtual classes. You will use the C++\r\n" + 
 				"programming language to design efficient, sustainable projects.";
 		Course class1 = new Course(); 
-		class1.getTags(NLUservice, courseDescription);
+		class1.generateTags(NLUservice, courseDescription);
 	}
 }

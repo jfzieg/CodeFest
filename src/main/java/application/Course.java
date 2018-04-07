@@ -22,11 +22,11 @@ public class Course {
 		tags.add(tag);
 	}
 	
-	public void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
-		this.getTags(NLUservice, courseDescription, 3);
+	public void generateTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
+		this.generateTags(NLUservice, courseDescription, 3);
 	}
 	
-	public void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription, int numTags) {
+	public void generateTags(NaturalLanguageUnderstanding NLUservice, String courseDescription, int numTags) {
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
 				.limit(numTags).build();
 		Features features = new Features.Builder()
