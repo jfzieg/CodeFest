@@ -26,6 +26,7 @@ import application.Course;
 import application.Student;
 import com.google.gson.Gson;
 
+import wasdev.sample.store.CloudantStudentStore;
 import wasdev.sample.store.Storable;
 import wasdev.sample.store.StudentStoreFactory;
 
@@ -34,7 +35,7 @@ import wasdev.sample.store.StudentStoreFactory;
 public class StudentAPI extends Application {
 	
 	//Our database store
-	Storable store = StudentStoreFactory.getInstance();
+	CloudantStudentStore store = StudentStoreFactory.getInstance();
 
   /**
    * Gets all Visitors.
