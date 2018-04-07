@@ -28,7 +28,7 @@ public class Job {
     }
 
     public void generateTags(String courseDescription) {
-        this.generateTags(courseDescription, 3);
+        this.generateTags(courseDescription, 5);
     }
 
     public void generateTags(String courseDescription, int numTags) {
@@ -41,6 +41,10 @@ public class Job {
             System.out.print(newTag);
         }
         System.out.println();
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
     }
 
 
