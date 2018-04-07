@@ -33,19 +33,19 @@ public class Course {
 		tags.add(tag);
 	}
 	
+	public void addTags(List<String> tags) {
+		tags.addAll(tags);
+	}
+	
 	public void generateTags(String courseDescription) {
 		this.generateTags(courseDescription, 3);
 	}
 
 	public void generateTags(String courseDescription, int numTags) {
 		List<String> concepts = NLU.getConcepts(courseDescription, numTags);
+		this.addTags(concepts);
 		System.out.print("New tags added to " + courseName + ": ");
-		for (int i = 0; i < numTags; i++) {
-			if (i != 0) {System.out.print(", ");}
-			String newTag = concepts.get(i);
-			this.addTag(newTag);
-			System.out.print(newTag);
-		}
+		System.out.print(concepts);
 		System.out.println();
 	}
 	

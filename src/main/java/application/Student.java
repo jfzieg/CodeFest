@@ -6,6 +6,7 @@ public class Student {
     private String name = null;
     private ArrayList<String> major;
     private ArrayList<String> minor;
+    private ArrayList<String> skills;
 
     private HashMap<String, Integer> fields;
 
@@ -47,6 +48,7 @@ public class Student {
         String field = c.getField();
         if (!fields.containsKey(field)) {
             fields.put(field, 1);
+            skills.addAll(c.getTags());
         } else {
             fields.put(field, fields.get(field) + 1);
         }
@@ -78,7 +80,7 @@ public class Student {
         }
     }
 
-    // compare to requirements and return fields missing or an empty array
+    // compare fields to requirements and return fields missing or an empty array
     public ArrayList<String> missingFields(ArrayList<String> reqs) {
         int looprun=0;
         Set<String>fieldKeys=fields.keySet();
@@ -93,6 +95,18 @@ public class Student {
         return reqs;
     }
 
+    // compare skills to requirements and return skills missing or an empty array
+    public ArrayList<String> missingSkills(ArrayList<String> reqs) {
+        int looprun=0;
+        while (looprun<reqs.size()){
+            if(skills.contains(reqs.get(looprun))){
+                reqs.remove(looprun);
+            }else{
+                looprun++;
+            }
+        }
+        return reqs;
+    }
 
     public static HashMap sortByValues(HashMap map) {
         List list = new LinkedList(map.entrySet());
