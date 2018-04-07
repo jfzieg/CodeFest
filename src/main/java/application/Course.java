@@ -1,10 +1,14 @@
 package application;
 
+import java.io.IOException;
 import java.util.*;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.*;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import com.snowtide.PDF;
+import com.snowtide.pdf.Document;
+import com.snowtide.pdf.OutputTarget;
 
 public class Course {
 	private List<String> tags = new ArrayList<>();
@@ -42,12 +46,12 @@ public class Course {
 		AnalysisResults response = NLUservice.analyze(parameters).execute();
 		System.out.print("New tags added to " + courseName + ": ");
 		for (int i = 0; i < numTags; i++) {
+			if (i != 0) {System.out.print(", ");}
 			String newTag = response.getConcepts().get(i).getText();
 			this.addTag(newTag);
-			System.out.print(newTag + ",");
+			System.out.print(newTag);
 		}
 		System.out.println();
-		System.out.println(this.tags);
 	}
 	
 	// works with text for most pdfs, doesn't work with text for Cybersecurity for some reason
@@ -60,12 +64,11 @@ public class Course {
 		String regex = "([dD]escription:?.{5,}\n)|([oO]verview:?.{5,}\n)";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(textStrip3);
-		System.out.println(textStrip3);
 		if(matcher.find()) {
 			String description = textStrip3.substring(matcher.start(), matcher.end());
 			return description;
 		}
-		return "nope";
+		return "could not find description :(";
 	}
 
 	public List<String> getTags() {
@@ -83,7 +86,19 @@ public class Course {
     public String getField() {
 		return this.field;
 	}
-
+    
+    public static String pdfGetText(String pdfFilePath) {
+    	Document pdf = PDF.open(pdfFilePath);
+		StringBuilder text = new StringBuilder(1024);
+		pdf.pipe(new OutputTarget(text));
+		try {
+			pdf.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return text.toString();
+    }
+    
 	private static NaturalLanguageUnderstanding startNLUservice() {
 		return new NaturalLanguageUnderstanding(
 				  "2018-03-18",
