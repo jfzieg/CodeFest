@@ -98,13 +98,14 @@ public class VisitorAPI extends Application {
     @Produces("application/text")
     @Consumes("application/json")
     public String newToDo(Visitor visitor) {
-      if(store == null) {
-    	  return String.format("Hello %s!", visitor.getName());
-      }
-      
-      store.persist(visitor);
-      return String.format("Hello %s! I've added you to the database.", visitor.getName());
+        if (store == null) {
+            return String.format("Hello %s!", visitor.getName());
+        }
 
+        store.persist(visitor);
+        return String.format("Hello %s! I've added you to the database.", visitor.getName());
+
+        
     }
 
 }
