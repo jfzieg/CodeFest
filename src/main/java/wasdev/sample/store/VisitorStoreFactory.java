@@ -15,17 +15,17 @@
  *******************************************************************************/ 
 package wasdev.sample.store;
 
-public class StudentStoreFactory {
+public class VisitorStoreFactory {
 	
-	private static CloudantStudentStore instance;
+	private static VisitorStore instance;
 	static {
-		CloudantStudentStore cvif = new CloudantStudentStore();
+		CloudantVisitorStore cvif = new CloudantVisitorStore();	
 		if(cvif.getDB() != null){
 			instance = cvif;
 		}
 	}
 	
-	public static CloudantStudentStore getInstance() {
+	public static VisitorStore getInstance() {
 		return instance;
 	}
 
