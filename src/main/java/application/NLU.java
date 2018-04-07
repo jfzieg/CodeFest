@@ -13,6 +13,10 @@ public class NLU {
 				);
 	}
 	
+	public static List<String> getConcepts(String text) {
+		return getConcepts(text, 3);
+	}
+	
 	public static List<String> getConcepts(String text, int num) {
 		NaturalLanguageUnderstanding NLUservice = NLU.startNLUservice();
 		ConceptsOptions concepts = new ConceptsOptions.Builder()

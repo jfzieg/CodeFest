@@ -22,6 +22,12 @@ public class Course {
 		this.field = field;
 	}
 	
+	public Course(String courseName, String field, String courseDescription) {
+		this.courseName = courseName;
+		this.field = field;
+		this.generateTags(courseDescription);
+	}
+	
 	public boolean searchTag(String s){
 		if (tags.contains(s)){
 			return true;
@@ -44,6 +50,13 @@ public class Course {
 	public void generateTags(String courseDescription, int numTags) {
 		List<String> concepts = NLU.getConcepts(courseDescription, numTags);
 		this.addTags(concepts);
+		for(int i=0; i<this.tags.size();i++) {
+			for(int j=i+1; j<this.tags.size();j++) {
+				if(this.tags.get(i) == this.tags.get(j)) {
+					this.tags.remove(j);
+				}
+			}
+		}
 		System.out.print("New tags added to " + courseName + ": ");
 		System.out.print(concepts);
 		System.out.println();
