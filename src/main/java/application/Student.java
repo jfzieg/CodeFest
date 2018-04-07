@@ -46,11 +46,11 @@ public class Student {
 		courses.add(c);
 		String field = c.getField();
 		if (fields.contains(field)){
-		    fieldRanks.get( fields.indexOf(field) ) += 1;
+		    fieldRanks.add(fields.indexOf(field), fieldRanks.get(fields.indexOf(field)) + 1);
         }
         else {
 		    fields.add(c.getField());
-		    fieldRanks.
+		    fieldRanks.add(1);
         }
 
 	}
@@ -84,7 +84,6 @@ public class Student {
         for (int rank : fieldRanking) {
 	        if (rank > max) {
 	            max = rank;
-	            highestIndex =
             }
         }
 
