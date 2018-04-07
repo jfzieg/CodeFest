@@ -16,6 +16,17 @@ public class GitJobsApi{
 	}
 	
 	/**
+	 * Main getJobs method returns JSONArray of jobs with specified tag
+	 * @param searchBy: The tag that you want to search for
+	 * @return JSONArray of results
+	 */
+	public static JSONArray getJobs(String searchBy) throws Exception{
+		String url = "https://jobs.github.com/positions.json?description=";
+		url += searchBy;
+		return readJsonFromUrl(url);
+	}
+	
+	/**
 	 * This method reads all lines from the HTTP Get request
 	 * @Param rd: bufferedreader object 
 	 * @return whole response as string
