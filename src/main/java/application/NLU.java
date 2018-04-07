@@ -13,7 +13,7 @@ public class NLU {
 				);
 	}
 	
-	public static List<ConceptsResult> getConcepts(String text, int num) {
+	public static List<String> getConcepts(String text, int num) {
 		NaturalLanguageUnderstanding NLUservice = NLU.startNLUservice();
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
 				.limit(num).build();
@@ -22,6 +22,10 @@ public class NLU {
 		AnalyzeOptions parameters = new AnalyzeOptions.Builder()
 				.text(text).features(features).build();
 		AnalysisResults response = NLUservice.analyze(parameters).execute();
-		return response.getConcepts();
+		List<String> conceptStrings = new ArrayList<String>();
+		for (int i=0; i<num; i++) {
+			conceptStrings.add(response.getConcepts().get(i).toString());
+		}
+		return conceptStrings;
 	}
 }

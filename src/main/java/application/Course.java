@@ -36,11 +36,11 @@ public class Course {
 	}
 
 	public void generateTags(String courseDescription, int numTags) {
-		List<ConceptsResult> concepts = NLU.getConcepts(courseDescription, numTags);
+		List<String> concepts = NLU.getConcepts(courseDescription, numTags);
 		System.out.print("New tags added to " + courseName + ": ");
 		for (int i = 0; i < numTags; i++) {
 			if (i != 0) {System.out.print(", ");}
-			String newTag = concepts.get(i).getText();
+			String newTag = concepts.get(i);
 			this.addTag(newTag);
 			System.out.print(newTag);
 		}
