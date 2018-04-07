@@ -2,8 +2,6 @@ package application;
 
 import java.io.IOException;
 import java.util.*;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.*;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import com.snowtide.PDF;
