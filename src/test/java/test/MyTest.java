@@ -1,4 +1,8 @@
+package test;
+
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
+
+import application.Course;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.json.*;
@@ -28,7 +32,8 @@ public class MyTest{
 		String courseDescription = "You will learn about the Object-Oriented Programming paradigm and gain knowledge of classes,\r\n" + 
 				"encapsulation, polymorphism, inheritance, and virtual classes. You will use the C++\r\n" + 
 				"programming language to design efficient, sustainable projects.";
-		Class.getTags(NLUservice, courseDescription);
-		
+		Course class1 = new Course("CS205","CS");
+		class1.generateTags(courseDescription);
+		System.out.println(class1.getTags());
 	}
 }
