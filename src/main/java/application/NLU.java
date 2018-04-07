@@ -24,8 +24,23 @@ public class NLU {
 		AnalysisResults response = NLUservice.analyze(parameters).execute();
 		List<String> conceptStrings = new ArrayList<String>();
 		for (int i=0; i<num; i++) {
-			conceptStrings.add(response.getConcepts().get(i).toString());
+			conceptStrings.add(response.getConcepts().get(i).getText());
 		}
 		return conceptStrings;
+	}
+	
+	public static String getCatagory(String text) {
+		NaturalLanguageUnderstanding NLUservice = NLU.startNLUservice();
+		CategoriesOptions categories = new CategoriesOptions();
+		Features features = new Features.Builder()
+				  .categories(categories)
+				  .build();
+		AnalyzeOptions parameters = new AnalyzeOptions.Builder()
+				  .text(text)
+				  .features(features)
+				  .build();
+		AnalysisResults response = NLUservice.analyze(parameters).execute();
+		String catagory = response.getCategories().get(0).getLabel();
+		return catagory;
 	}
 }

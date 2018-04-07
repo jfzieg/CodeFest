@@ -15,6 +15,10 @@ public class Course {
 	private String courseName;
 	private String field;
 
+	public Course(String courseName){
+		this.courseName = courseName;
+	}
+	
 	public Course(String courseName, String field){
 		this.courseName = courseName;
 		this.field = field;
@@ -45,6 +49,10 @@ public class Course {
 			System.out.print(newTag);
 		}
 		System.out.println();
+	}
+	
+	public void generateField(String courseDescription) {
+		this.field = NLU.getCatagory(courseDescription);
 	}
 	
 	// works with text for most pdfs, doesn't work with text for Cybersecurity for some reason
