@@ -12,7 +12,7 @@ public class Test {
 		String courseDescription = "You will learn about the Object-Oriented Programming paradigm and gain knowledge of classes,\r\n" + 
 				"encapsulation, polymorphism, inheritance, and virtual classes. You will use the C++\r\n" + 
 				"programming language to design efficient, sustainable projects.";
-		Course class1 = new Course(); 
+		Course class1 = new Course("CS205", "CS"); 
 		class1.generateTags(NLUservice, courseDescription);
 	}
 }

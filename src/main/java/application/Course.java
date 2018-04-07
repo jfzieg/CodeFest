@@ -6,9 +6,12 @@ import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.*;
 
 public class Course {
 	private List<String> tags = new ArrayList<>();
+	private String courseName;
+	private String field;
 	
-	public Course(){
-		
+	public Course(String courseName, String field){
+		this.courseName = courseName;
+		this.field = field;
 	}
 	
 	public boolean searchTag(String s){
@@ -34,10 +37,25 @@ public class Course {
 		AnalyzeOptions parameters = new AnalyzeOptions.Builder()
 				.text(courseDescription).features(features).build();
 		AnalysisResults response = NLUservice.analyze(parameters).execute();
+		System.out.print("New tags added to " + courseName + ": ");
 		for (int i = 0; i < numTags; i++) {
-			this.addTag(response.getConcepts().get(i).getText());
+			String newTag = response.getConcepts().get(i).getText();
+			this.addTag(newTag);
+			System.out.print(newTag + ",");
 		}
+		System.out.println();
 		System.out.println(this.tags);
 	}
 
+	public List<String> getTags() {
+		return this.tags;
+	}
+	
+	public String getCourseName() {
+		return this.courseName;
+	}
+	
+	public String getField() {
+		return this.field;
+	}
 }
