@@ -13,7 +13,8 @@ public class Class {
 		this.level = level;
 	}
 	
-	public static void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
+	public static void getTags(String courseDescription) {
+		NaturalLanguageUnderstanding NLUservice = startNLUservice();
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
 				.limit(3).build();
 		Features features = new Features.Builder()
@@ -22,5 +23,13 @@ public class Class {
 				.text(courseDescription).features(features).build();
 		AnalysisResults response = NLUservice.analyze(parameters).execute();
 		System.out.println(response.getConcepts());
+	}
+	
+	private static startNLUservice() {
+		return new NaturalLanguageUnderstanding(
+				  "2018-03-16",
+				  "6dc0cf71-c1ef-4c0d-a2b1-989742aa5877",
+				  "4fyitpGXB48Y"
+				);
 	}
 }
