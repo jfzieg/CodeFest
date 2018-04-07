@@ -10,7 +10,7 @@ public class Course {
 	private List<String> tags = new ArrayList<>();
 	private String courseName;
 	private String field;
-	
+
 	public Course(String courseName, String field){
 		this.courseName = courseName;
 		this.field = field;
@@ -30,7 +30,7 @@ public class Course {
 	public void generateTags(String courseDescription) {
 		this.generateTags(courseDescription, 3);
 	}
-	
+
 	public void generateTags(String courseDescription, int numTags) {
 		NaturalLanguageUnderstanding NLUservice = startNLUservice();
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
@@ -50,12 +50,19 @@ public class Course {
 		System.out.println(this.tags);
 	}
 	
-	public String getDescription(String text) {
-		String regex = "([dD]escription.*?[\r\n])|([oO]verview.*[\r\n])";
+	// works with text for most pdfs, doesn't work with text for Cybersecurity for some reason
+	// since the text we get from Cybersecuryity is all messed up
+	public static String getDescription(String text) {
+		String textStrip = text.replaceAll("\r","");
+		String textStrip1 = textStrip.replaceAll("\n{2}","\r");
+		String textStrip2 = textStrip1.replaceAll("\n"," ");
+		String textStrip3 = textStrip2.replaceAll("\r","\n");  
+		String regex = "([dD]escription:?.{5,}\n)|([oO]verview:?.{5,}\n)";
 		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(text);
+		Matcher matcher = pattern.matcher(textStrip3);
+		System.out.println(textStrip3);
 		if(matcher.find()) {
-			String description = text.substring(matcher.start(), matcher.end());
+			String description = textStrip3.substring(matcher.start(), matcher.end());
 			return description;
 		}
 		return "nope";
@@ -64,18 +71,22 @@ public class Course {
 	public List<String> getTags() {
 		return this.tags;
 	}
-	
+
 	public String getCourseName() {
 		return this.courseName;
 	}
-	
-	public String getField() {
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getField() {
 		return this.field;
 	}
-	
+
 	private static NaturalLanguageUnderstanding startNLUservice() {
 		return new NaturalLanguageUnderstanding(
-				  "2018-04-7",
+				  "2018-03-18",
 				  "6dc0cf71-c1ef-4c0d-a2b1-989742aa5877",
 				  "4fyitpGXB48Y"
 				);
