@@ -69,22 +69,14 @@ public class Student {
 
 	public void rankFields() {
 
-	    int[] fieldRanking = new int[fields.size()];
-
-	    for (int i = 0; i < fields.size(); i++) {
-	        for (String s2 : fields) {
-	            if (fields.get(i).equalsIgnoreCase(s2)){
-	                fieldRanking[i]++;
-                }
+	    int max = -1;
+	    int maxIndex = -1;
+	    for (int i = 0; i < fieldRanks.size(); i++) {
+	        if (fieldRanks.get(i) > max) {
+	            max = fieldRanks.get(i);
+	            maxIndex = i;
             }
-        }
 
-        int max = 0;
-	    int highestIndex = -1;
-        for (int rank : fieldRanking) {
-	        if (rank > max) {
-	            max = rank;
-            }
         }
 
     }
