@@ -5,7 +5,7 @@ public class CourseStoreFactory {
 	
 	private static CourseStore instance;
 	static {
-		CloudantVisitorStore cvif = new CloudantVisitorStore();	
+		CourseStore cvif = new CloudantCourseStore();
 		if(cvif.getDB() != null){
 			instance = cvif;
 		}
