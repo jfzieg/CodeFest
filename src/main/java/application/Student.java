@@ -95,8 +95,9 @@ public class Student {
     // compare to requirements and return fields missing or an empty array
     public ArrayList<String> missingFields(ArrayList<String> reqs) {
 		int looprun=0;
+		//ArrayList<String> fieldsAL=fields.contains(String);
 		while (looprun<reqs.size()){
-			if(fields.contains(reqs.get(looprun))){
+			if(fields/*AL*/.contains(reqs.get(looprun))){
 				reqs.remove(looprun);
 			}else{
 				looprun++;
