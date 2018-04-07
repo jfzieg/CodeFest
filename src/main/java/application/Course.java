@@ -3,6 +3,8 @@ package application;
 import java.util.*;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.*;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Course {
 	private List<String> tags = new ArrayList<>();
@@ -45,6 +47,17 @@ public class Course {
 		}
 		System.out.println();
 		System.out.println(this.tags);
+	}
+	
+	public String getDescription(String text) {
+		String regex = "([dD]escription.*?[\r\n])|([oO]verview.*[\r\n])";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(text);
+		if(matcher.find()) {
+			String description = text.substring(matcher.start(), matcher.end());
+			return description;
+		}
+		return "nope";
 	}
 
 	public List<String> getTags() {
