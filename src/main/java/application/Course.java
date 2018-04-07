@@ -27,11 +27,12 @@ public class Course {
 		tags.add(tag);
 	}
 	
-	public void generateTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
-		this.generateTags(NLUservice, courseDescription, 3);
+	public void generateTags(String courseDescription) {
+		this.generateTags(courseDescription, 3);
 	}
 	
-	public void generateTags(NaturalLanguageUnderstanding NLUservice, String courseDescription, int numTags) {
+	public void generateTags(String courseDescription, int numTags) {
+		NaturalLanguageUnderstanding NLUservice = startNLUservice();
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
 				.limit(numTags).build();
 		Features features = new Features.Builder()
@@ -70,5 +71,13 @@ public class Course {
 	
 	public String getField() {
 		return this.field;
+	}
+	
+	private static NaturalLanguageUnderstanding startNLUservice() {
+		return new NaturalLanguageUnderstanding(
+				  "2018-04-7",
+				  "6dc0cf71-c1ef-4c0d-a2b1-989742aa5877",
+				  "4fyitpGXB48Y"
+				);
 	}
 }
