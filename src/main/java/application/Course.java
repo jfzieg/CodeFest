@@ -23,14 +23,18 @@ public class Course {
 	}
 	
 	public void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
+		this.getTags(NLUservice, courseDescription, 3);
+	}
+	
+	public void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription, int numTags) {
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
-				.limit(3).build();
+				.limit(numTags).build();
 		Features features = new Features.Builder()
 				.concepts(concepts).build();
 		AnalyzeOptions parameters = new AnalyzeOptions.Builder()
 				.text(courseDescription).features(features).build();
 		AnalysisResults response = NLUservice.analyze(parameters).execute();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < numTags; i++) {
 			this.addTag(response.getConcepts().get(i).getText());
 		}
 		System.out.println(this.tags);
