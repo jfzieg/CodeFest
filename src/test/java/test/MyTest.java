@@ -2,11 +2,12 @@ package test;
 
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
 
-import application.Course;
+import application.*;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.json.*;
 import java.io.IOException;
+import wasdev.sample.rest.*;
 
 
 
