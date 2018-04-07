@@ -1,77 +1,100 @@
 <!DOCTYPE HTML>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>5th Year</title>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5th Year</title>
 
-    <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
-  </head>
+<!-- Bootstrap -->
+<link
 
-  <body>
-    <div class="container" style="padding:0">
-      <div class="full-width header">
-        <h1 class="header">5th year</h1>
-        <h5>
-          employment qualification engine
-        </h5>
-      </div>
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+</head>
 
+<body>
 
-
-      <h2 class="full-width subhead">create student profile</h2>
-
-      <div id="form-body" class="container">
-
-        <div id="nameInput" class="input-group-lg center-block helloInput">
-          <p class="form-label">student name</p>
-          <input id="user_fname" type="text" class="form-control" placeholder="first name" aria-describedby="sizing-addon1" value="" />
-          <input id="user_lname" type="text" class="form-control" placeholder="last name" aria-describedby="sizing-addon1" value="" />
-        </div>
-
-        <div id="emailInput" class="input-group-lg center-block helloInput">
-          <p class="form-label">email address</p>
-          <input id="user_email" type="text" class="form-control" placeholder="email address" aria-describedby="sizing-addon1" value="" />
-        </div>
-
-        <div id="educationInput" class="input-group-lg center-block helloInput">
-          <p class="form-label">education</p>
-          <input id="user_major" type="text" class="form-control" placeholder="major" aria-describedby="sizing-addon1" value="" />
-          <input id="user_minor" type="text" class="form-control" placeholder="minor" aria-describedby="sizing-addon1" value="" />
-          <input id="user_grad" type="text" class="form-control" placeholder="graduation year" aria-describedby="sizing-addon1" value="" />
-        </div>
-
-        <div id="expInput" class="input-group-lg center-block helloInput">
-          <p class="form-label">course syllabi</p>
-
-          <p class='file-upload-container'>
-            <input type='file' id='input0'><span id='val0'></span>
-            <span id='button0' class='upload-button'>upload file</span>
-          </p>
+	<div class="container" style="padding: 0">
+		<div class="full-width header">
+			<h1 class="header">5th year</h1>
+			<h5>employment qualification engine</h5>
+		</div>
 
 
 
-        </div>
-        <p><input type="button" value="+" onclick="addFile()"></p>
+		<h2 class="full-width subhead">create student profile</h2>
 
+		<div id="form-body" class="container">
+
+			<div id="nameInput" class="input-group-lg center-block helloInput">
+				<p class="form-label">student name</p>
+				<input id="user_fname" type="text" class="form-control"
+					placeholder="first name" aria-describedby="sizing-addon1" value="" />
+				<input id="user_lname" type="text" class="form-control"
+					placeholder="last name" aria-describedby="sizing-addon1" value="" />
+			</div>
+
+			<div id="emailInput" class="input-group-lg center-block helloInput">
+				<p class="form-label">email address</p>
+				<input id="user_email" type="text" class="form-control"
+					placeholder="email address" aria-describedby="sizing-addon1"
+					value="" />
+			</div>
+
+			<div id="educationInput"
+				class="input-group-lg center-block helloInput">
+				<p class="form-label">education</p>
+				<input id="user_major" type="text" class="form-control"
+					placeholder="major" aria-describedby="sizing-addon1" value="" /> <input
+					id="user_minor" type="text" class="form-control"
+					placeholder="minor" aria-describedby="sizing-addon1" value="" /> <input
+					id="user_grad" type="text" class="form-control"
+					placeholder="graduation year" aria-describedby="sizing-addon1"
+					value="" />
+			</div>
+
+			<div id="expInput" class="input-group-lg center-block helloInput">
+				<p class="form-label">course syllabi</p>
+
+				<input type='file' id='input0'><span id='val0'></span> 
+
+				<button class='upload-button' onclick="myFunction()">Syllabus</button>
+
+
+				<!-- 		<p class='file-upload-container'>
+					<input type='file' id='input0'><span id='val0'></span> 
+					<span id='button0' class='upload-button'>upload file</span>
+				</p> -->
+
+			</div>
+
+			<script>
+				function myFunction() {
+					var x = document.createElement("INPUT");
+					x.setAttribute("type", "file");
+					document.body.appendChild(x);
+				}
+			</script>
+
+
+			<!--         <p><input type="button" value="+" onclick="addFile()"></p>
         <p id="response" class="lead text-center"></p>
-
         <p id="databaseNames" class="lead text-center"></p>
+      </div>  -->
 
-      </div>
 
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script>
+		<!-- <script>
     	var fileCounter = 0;
     
       function addFile() {
@@ -80,8 +103,7 @@
           "<span id='button" + fileCounter + "' class='upload-button'>upload file</span>";
         addElement('expInput', 'p', 'file-upload-container', 'add1', html);
       }
-
-
+      
       function addElement(parentId, elementTag, elementClass, elementId, html) {
         // Adds an element to the document
         var p = document.getElementById(parentId);
@@ -90,11 +112,10 @@
         newElement.setAttribute('class', elementClass);
         newElement.innerHTML = html;
         p.appendChild(newElement);
+        
       }
-
-    </script>
-
-  </body>
+      
+    </script> -->
+</body>
 
 </html>
-
