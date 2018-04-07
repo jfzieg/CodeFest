@@ -1,5 +1,9 @@
 package application;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import wasdev.sample.rest.GitJobsApi;
+
 import java.util.*;
 
 public class Student {
@@ -24,6 +28,10 @@ public class Student {
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<String> getSkills() {
+        return skills;
     }
 
     //Allows input of majors delimited by comma and space, like "Computer Science, Math"
@@ -127,5 +135,71 @@ public class Student {
         }
         return sortedHashMap;
     }
+
+    public HashMap<Job, Integer> jobSearch(String keyword) throws Exception{
+        GitJobsApi a = new GitJobsApi();
+        JSONArray json = a.getJobs(keyword);
+        JSONObject b = json.getJSONObject(0); //Indexes first result of the JSONArray
+        System.out.println(b.get("description")); //Prints just the value associated with the description key
+
+        ArrayList<Job> jobsList = new ArrayList<>();
+        for (int i = 0; i < 200; i++) {
+            jobsList.add(new Job((String)json.getJSONObject(i).get("title"), (String)json.getJSONObject(i).get("company"), (String)json.getJSONObject(i).get("description")));
+        }
+
+        HashMap<Job, Integer> rankedJobs = new HashMap<>();
+
+        for (Job j : jobsList) {
+            int hits = 0;
+            for (String studSkill : this.getSkills()) {
+                for (String tag : j.getTags()){
+                    if (tag.equalsIgnoreCase(studSkill)) {
+                        hits++;
+                    }
+                }
+            }
+
+            rankedJobs.put(j, hits);
+        }
+        rankedJobs = sortByValues(rankedJobs);
+        return rankedJobs;
+    }
+
+    public void recommendSkills(String keyword) throws Exception{
+        GitJobsApi a = new GitJobsApi();
+        JSONArray json = a.getJobs(keyword);
+        JSONObject b = json.getJSONObject(0); //Indexes first result of the JSONArray
+        System.out.println(b.get("description")); //Prints just the value associated with the description key
+
+        ArrayList<Job> jobsList = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            jobsList.add(new Job((String)json.getJSONObject(i).get("title"), (String)json.getJSONObject(i).get("company"), (String)json.getJSONObject(i).get("description")));
+        }
+
+        HashMap<String, Integer> popularSkills = new HashMap<>();
+        for (Job j : jobsList) {
+            for (String s : j.getTags()) {
+                if (popularSkills.containsKey(s)) {
+                    popularSkills.put(s, popularSkills.get(s) + 1);
+                }
+                else {
+                    popularSkills.put(s, 1);
+                }
+            }
+        }
+
+        HashMap<String, Integer> rankedSkills = sortByValues(popularSkills);
+
+        ArrayList<String> topSkills = new ArrayList<>();
+        topSkills.addAll(rankedSkills.keySet());
+
+        System.out.println("These skills are in the highest demand:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(topSkills.get(i) + ": " + rankedSkills.get(topSkills.get(i)) + "jobs mentioned this.");
+        }
+
+    }
+
+
 
 }
