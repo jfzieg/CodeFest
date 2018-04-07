@@ -13,15 +13,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 
+import application.Course;
 import com.google.gson.Gson;
 
 import wasdev.sample.Visitor;
+import wasdev.sample.store.CourseStore;
+import wasdev.sample.store.CourseStoreFactory;
 import wasdev.sample.store.VisitorStore;
 import wasdev.sample.store.VisitorStoreFactory;
 
 @ApplicationPath("api")
 @Path("/courses")
-public class CourseAPI extends Appliction {
+public class CourseAPI extends Application {
 	
 	//Our database store
 	CourseStore store = CourseStoreFactory.getInstance();
@@ -50,8 +53,8 @@ public class CourseAPI extends Appliction {
 		}
 		
 		List<String> names = new ArrayList<String>();
-		for (Visitor doc : store.getAll()) {
-			String name = doc.getName();
+		for (Course doc : store.getAll()) {
+			String name = doc.getCourseName();
 			if (name != null){
 				names.add(name);
 			}
@@ -94,3 +97,4 @@ public class CourseAPI extends Appliction {
       return String.format("Hello %s! I've added you to the database.", course.getCourseName());
 
     }
+}
