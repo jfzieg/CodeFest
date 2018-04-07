@@ -20,19 +20,18 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.List;
 
+import application.Student;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
 import com.google.gson.JsonObject;
 
-import wasdev.sample.Visitor;
-
-public class CloudantVisitorStore implements VisitorStore{
+public class CloudantStudentStore{
 	
 	private Database db = null;
-	private static final String databaseName = "mydb";
+	private static final String databaseName = "students";
 	
-	public CloudantVisitorStore(){
+	public CloudantStudentStore(){
 		CloudantClient cloudant = createClient();
 		if(cloudant!=null){
 		 db = cloudant.database(databaseName, true);
@@ -76,45 +75,45 @@ public class CloudantVisitorStore implements VisitorStore{
 		}
 	}
 	
-	@Override
-	public Collection<Visitor> getAll(){
-        List<Visitor> docs;
+	
+	public Collection<Student> getAll(){
+        List<Student> docs;
 		try {
-			docs = db.getAllDocsRequestBuilder().includeDocs(true).build().getResponse().getDocsAs(Visitor.class);
+			docs = db.getAllDocsRequestBuilder().includeDocs(true).build().getResponse().getDocsAs(Student.class);
 		} catch (IOException e) {
 			return null;
 		}
         return docs;
 	}
 
-	@Override
-	public Visitor get(String id) {
-		return db.find(Visitor.class, id);
+	
+	public Student get(String id) {
+		return db.find(Student.class, id);
 	}
 
-	@Override
-	public Visitor persist(Visitor td) {
+	
+	public Student persist(Student td) {
 		String id = db.save(td).getId();
-		return db.find(Visitor.class, id);
+		return db.find(Student.class, id);
 	}
 
-	@Override
-	public Visitor update(String id, Visitor newVisitor) {
-		Visitor visitor = db.find(Visitor.class, id);
-		visitor.setName(newVisitor.getName());
-		db.update(visitor);
-		return db.find(Visitor.class, id);
+	
+	public Student update(String id, Student newStudent) {
+		Student Student = db.find(Student.class, id);
+		Student.setName(newStudent.getName());
+		db.update(Student);
+		return db.find(Student.class, id);
 		
 	}
 
-	@Override
+	
 	public void delete(String id) {
-		Visitor visitor = db.find(Visitor.class, id);
-		db.remove(id, visitor.get_rev());
+		Student Student = db.find(Student.class, id);
+		db.remove(id, Student.get_rev());
 		
 	}
 
-	@Override
+	
 	public int count() throws Exception {
 		return getAll().size();
 	}

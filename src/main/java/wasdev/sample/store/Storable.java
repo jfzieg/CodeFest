@@ -17,15 +17,16 @@ package wasdev.sample.store;
 
 import java.util.Collection;
 
+import application.Student;
 import com.cloudant.client.api.Database;
 
-import wasdev.sample.Visitor;
+import application.Student;
 
 /**
  * Defines the API for a ToDo store.
  *
  */
-public interface VisitorStore {
+public interface Storable {
 
   	/**
 	 * Get the target db object.
@@ -36,44 +37,44 @@ public interface VisitorStore {
   public Database getDB();
   
   	/**
-	 * Gets all Visitors from the store.
+	 * Gets all Students from the store.
 	 * 
-	 * @return All Visitors.
+	 * @return All Students.
   	 * @throws Exception 
 	 */
-  public Collection<Visitor> getAll();
+  public Collection<Student> getAll();
 
   /**
    * Gets an individual ToDo from the store.
    * @param id The ID of the ToDo to get.
    * @return The ToDo.
    */
-  public Visitor get(String id);
+  public Student get(String id);
 
   /**
-   * Persists a Visitor to the store.
-   * @param td The ToDo to persist.
+   * Persists a Student to the store.
+   * @param vi The ToDo to persist.
    * @return The persisted ToDo.  The ToDo will not have a unique ID..
    */
-  public Visitor persist(Visitor vi);
+  public Student persist(Student vi);
 
   /**
    * Updates a ToDo in the store.
-   * @param id The ID of the Visitor to update.
-   * @param td The Visitor with updated information.
-   * @return The updated Visitor.
+   * @param id The ID of the Student to update.
+   * @param vi The Student with updated information.
+   * @return The updated Student.
    */
-  public Visitor update(String id, Visitor vi);
+  public Student update(String id, Student vi);
 
   /**
    * Deletes a ToDo from the store.
-   * @param id The ID of the Visitor to delete.
+   * @param id The ID of the Student to delete.
    */
   public void delete(String id);
   
   /**
-   * Counts the number of Visitors
-   * @return The total number of Visitors.
+   * Counts the number of Students
+   * @return The total number of Students.
  * @throws Exception 
    */
   public int count() throws Exception;

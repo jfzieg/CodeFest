@@ -78,7 +78,7 @@ public class Visitor {
 	/**
 	 * Sets the name
 	 * 
-	 * @param name
+	 * @param visitorName
 	 *            The visitorName to set.
 	 */
 	public void setName(String visitorName) {
