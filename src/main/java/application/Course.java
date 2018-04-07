@@ -2,8 +2,6 @@ package application;
 
 import java.io.IOException;
 import java.util.*;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.*;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import com.snowtide.PDF;
@@ -15,6 +13,10 @@ public class Course {
 	private String courseName;
 	private String field;
 
+	public Course(String courseName){
+		this.courseName = courseName;
+	}
+	
 	public Course(String courseName, String field){
 		this.courseName = courseName;
 		this.field = field;
@@ -36,15 +38,19 @@ public class Course {
 	}
 
 	public void generateTags(String courseDescription, int numTags) {
-		List<ConceptsResult> concepts = NLU.getConcepts(courseDescription, numTags);
+		List<String> concepts = NLU.getConcepts(courseDescription, numTags);
 		System.out.print("New tags added to " + courseName + ": ");
 		for (int i = 0; i < numTags; i++) {
 			if (i != 0) {System.out.print(", ");}
-			String newTag = concepts.get(i).getText();
+			String newTag = concepts.get(i);
 			this.addTag(newTag);
 			System.out.print(newTag);
 		}
 		System.out.println();
+	}
+	
+	public void generateField(String courseDescription) {
+		this.field = NLU.getCatagory(courseDescription);
 	}
 	
 	// works with text for most pdfs, doesn't work with text for Cybersecurity for some reason
