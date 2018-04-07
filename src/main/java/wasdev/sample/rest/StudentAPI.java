@@ -16,34 +16,31 @@
 package wasdev.sample.rest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 
+import application.Course;
+import application.Student;
 import com.google.gson.Gson;
 
-import wasdev.sample.Visitor;
-import wasdev.sample.store.VisitorStore;
-import wasdev.sample.store.VisitorStoreFactory;
+import wasdev.sample.store.Storable;
+import wasdev.sample.store.StudentStoreFactory;
 
 @ApplicationPath("api")
 @Path("/visitors")
-public class VisitorAPI extends Application {
+public class StudentAPI extends Application {
 	
 	//Our database store
-	VisitorStore store = VisitorStoreFactory.getInstance();
+	Storable store = StudentStoreFactory.getInstance();
 
   /**
    * Gets all Visitors.
    * REST API example:
    * <code>
-   * GET http://localhost:9080/GetStartedJava/api/visitors
+   * GET http://localhost:9080/GetStartedJava/api/student
    * </code>
    * 
    * Response:
@@ -55,20 +52,60 @@ public class VisitorAPI extends Application {
     @GET
     @Path("/")
     @Produces({"application/json"})
-    public String getVisitors() {
+    public String getStudents() {
 		
 		if (store == null) {
 			return "[]";
 		}
 		
 		List<String> names = new ArrayList<String>();
-		for (Visitor doc : store.getAll()) {
+		for (Student doc : store.getAll()) {
 			String name = doc.getName();
 			if (name != null){
 				names.add(name);
 			}
 		}
 		return new Gson().toJson(names);
+    }
+
+    /**
+     * Gets all Visitors.
+     * REST API example:
+     * <code>
+     * GET http://localhost:9080/GetStartedJava/api/student
+     * </code>
+     *
+     * Response:
+     * <code>
+     * [ "Bob", "Jane" ]
+     * </code>
+     * @return A collection of all the Visitors
+     */
+    @GET
+    @Path("/students/{id}")
+    @Produces({"application/json"})
+    public String getStudent(@PathParam("id") String name) {
+
+        if (store == null) {
+            return "[]";
+        }
+
+        Student student = store.get(name);
+
+        List<String> majors = student.getMajor();
+        List<String> minors = student.getMinor();
+        List<Course> courses = student.getCourses();
+
+//        List<List<Object>> fields = new ArrayList(majors, minors, courses );
+
+
+//        for (Student doc : store.getAll()) {
+//            String name = doc.getName();
+//            if (name != null){
+//                names.add(name);
+//            }
+//        }
+        return new Gson().toJson(majors);
     }
     
     /**
@@ -91,18 +128,18 @@ public class VisitorAPI extends Application {
      *   "name":"Bob"
      * }
      * </code>
-     * @param visitor The new Visitor to create.
+     * @param student The new Student to create.
      * @return The Visitor after it has been stored.  This will include a unique ID for the Visitor.
      */
     @POST
     @Produces("application/text")
     @Consumes("application/json")
-    public String newToDo(Visitor visitor) {
+    public String newToDo(Student student) {
       if(store == null) {
-    	  return String.format("Hello %s!", visitor.getName());
+    	  return String.format("Hello %s!", student.getName());
       }
-      store.persist(visitor);
-      return String.format("Hello %s! I've added you to the database.", visitor.getName());
+      store.persist(student);
+      return String.format("Hello %s! I've added you to the database.", student.getName());
 
     }
 
