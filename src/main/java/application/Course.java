@@ -1,19 +1,28 @@
+package application;
+
+import java.util.*;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.*;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.*;
 
-public class Class {
-	public String name;
-	public String field;
-	public String level;
-	public String[] tags;
+public class Course {
+	private List<String> tags = new ArrayList<>();
 	
-	Class(String name, String field, String level) {
-		this.name = name;
-		this.field = field;
-		this.level = level;
+	public Course(){
+		
 	}
 	
-	public static void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
+	public boolean searchTag(String s){
+		if (tags.contains(s)){
+			return true;
+		}
+		else return false;
+	}
+	
+	public void addTag(String tag){
+		tags.add(tag);
+	}
+	
+	public void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
 				.limit(3).build();
 		Features features = new Features.Builder()
@@ -21,6 +30,9 @@ public class Class {
 		AnalyzeOptions parameters = new AnalyzeOptions.Builder()
 				.text(courseDescription).features(features).build();
 		AnalysisResults response = NLUservice.analyze(parameters).execute();
-		System.out.println(response.getConcepts());
+		for (int i = 0; i < 3; i++) {
+			this.addTag(response.getConcepts().get(i).getText());
+		}
+		System.out.println(this.tags);
 	}
 }
