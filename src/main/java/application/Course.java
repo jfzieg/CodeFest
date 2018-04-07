@@ -22,7 +22,8 @@ public class Course {
 		tags.add(tag);
 	}
 	
-	public void getTags(NaturalLanguageUnderstanding NLUservice, String courseDescription) {
+	public void getTags( String courseDescription) {
+		NaturalLanguageUnderstanding NLUservice = startNLUservice();
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
 				.limit(3).build();
 		Features features = new Features.Builder()
@@ -35,5 +36,12 @@ public class Course {
 		}
 		System.out.println(this.tags);
 	}
-
+	
+	private static startNLUservice() {
+		return new NaturalLanguageUnderstanding(
+				  "2018-04-7",
+				  "6dc0cf71-c1ef-4c0d-a2b1-989742aa5877",
+				  "4fyitpGXB48Y"
+				);
+	}
 }
