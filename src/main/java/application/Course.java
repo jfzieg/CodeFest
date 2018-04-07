@@ -10,7 +10,7 @@ public class Course {
 	private List<String> tags = new ArrayList<>();
 	private String courseName;
 	private String field;
-	
+
 	public Course(String courseName, String field){
 		this.courseName = courseName;
 		this.field = field;
@@ -30,7 +30,7 @@ public class Course {
 	public void generateTags(String courseDescription) {
 		this.generateTags(courseDescription, 3);
 	}
-	
+
 	public void generateTags(String courseDescription, int numTags) {
 		NaturalLanguageUnderstanding NLUservice = startNLUservice();
 		ConceptsOptions concepts = new ConceptsOptions.Builder()
@@ -64,18 +64,22 @@ public class Course {
 	public List<String> getTags() {
 		return this.tags;
 	}
-	
+
 	public String getCourseName() {
 		return this.courseName;
 	}
-	
-	public String getField() {
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getField() {
 		return this.field;
 	}
-	
+
 	private static NaturalLanguageUnderstanding startNLUservice() {
 		return new NaturalLanguageUnderstanding(
-				  "2018-04-7",
+				  "2018-03-18",
 				  "6dc0cf71-c1ef-4c0d-a2b1-989742aa5877",
 				  "4fyitpGXB48Y"
 				);

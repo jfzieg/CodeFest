@@ -4,13 +4,15 @@ import java.util.*;
 
 public class Student {
 	private String name = null;
+	private String _id;
+	private String _rev;
 	private ArrayList<String> major;
 	private ArrayList<String> minor;
-	
+
 	private ArrayList<String> fields;
 	private ArrayList<Integer> fieldRanks;
 	private ArrayList<Course> courses;
-	
+
 	public Student() {
 		this.name = "";
 	}
@@ -59,6 +61,14 @@ public class Student {
 		this.name = visitorName;
 	}
 
+	public String get_id() {
+		return _id;
+	}
+
+	public void set_id(String _id) {
+		this._id = _id;
+	}
+
 	public ArrayList<String> deleteDuplicateFields(ArrayList<String> longList) {
 	    Set<String> deleter = new HashSet<>();
 	    deleter.addAll(longList);
@@ -81,9 +91,33 @@ public class Student {
 
     }
 
+
     // compare to requirements and return fields missing or an empty array
     public ArrayList<String> missingFields(ArrayList<String> reqs) {
         return reqs;
 	}
 
+	public String get_rev() {
+		return _rev;
+	}
+
+	public void set_rev(String _rev) {
+		this._rev = _rev;
+	}
+
+	public ArrayList<String> getMajor() {
+		return major;
+	}
+
+	public ArrayList<String> getMinor() {
+		return minor;
+	}
+
+	public ArrayList<String> getFields() {
+		return fields;
+	}
+
+	public ArrayList<Course> getCourses() {
+		return courses;
+	}
 }
