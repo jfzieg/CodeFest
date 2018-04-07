@@ -36,18 +36,11 @@ public class Course {
 	}
 
 	public void generateTags(String courseDescription, int numTags) {
-		NaturalLanguageUnderstanding NLUservice = startNLUservice();
-		ConceptsOptions concepts = new ConceptsOptions.Builder()
-				.limit(numTags).build();
-		Features features = new Features.Builder()
-				.concepts(concepts).build();
-		AnalyzeOptions parameters = new AnalyzeOptions.Builder()
-				.text(courseDescription).features(features).build();
-		AnalysisResults response = NLUservice.analyze(parameters).execute();
+		List<ConceptsResult> concepts = NLU.getConcepts(courseDescription, numTags);
 		System.out.print("New tags added to " + courseName + ": ");
 		for (int i = 0; i < numTags; i++) {
 			if (i != 0) {System.out.print(", ");}
-			String newTag = response.getConcepts().get(i).getText();
+			String newTag = concepts.get(i).getText();
 			this.addTag(newTag);
 			System.out.print(newTag);
 		}
@@ -99,11 +92,4 @@ public class Course {
 		return text.toString();
     }
     
-	private static NaturalLanguageUnderstanding startNLUservice() {
-		return new NaturalLanguageUnderstanding(
-				  "2018-03-18",
-				  "6dc0cf71-c1ef-4c0d-a2b1-989742aa5877",
-				  "4fyitpGXB48Y"
-				);
-	}
 }
