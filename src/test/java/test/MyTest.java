@@ -30,7 +30,8 @@ public class MyTest{
 		JSONArray json = a.getJobs("Python");
 		JSONObject b = json.getJSONObject(0); //Indexes first result of the JSONArray
 		System.out.println(b.get("description")); //Prints just the value associated with the description key
-	    
+	}
+	
 @Test
 	public void test3() {
 		NaturalLanguageUnderstanding NLUservice = new NaturalLanguageUnderstanding(

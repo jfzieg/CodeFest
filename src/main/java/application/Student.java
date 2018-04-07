@@ -72,6 +72,12 @@ public class Student {
         return sortedList;
     }
 
+    public void getTopFields() {
+        for (String s : rankFields()){
+            System.out.println(s + ": " + fields.get(s));
+        }
+    }
+
     // compare to requirements and return fields missing or an empty array
     public ArrayList<String> missingFields(ArrayList<String> reqs) {
         int looprun=0;

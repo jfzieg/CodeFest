@@ -11,7 +11,7 @@ import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
 import com.google.gson.JsonObject;
 
-public class CloudantCourseStore{
+public class CloudantCourseStore implements CourseStore{
     private Database db = null;
     private static final String databaseName = "courses";
 
