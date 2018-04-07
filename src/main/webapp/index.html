@@ -14,7 +14,8 @@
 
 <body>
     <div class="container">
-        <h1>This is a Test!!</h1>
+        <h1>Welcome to 5th Year ! !</h1>
+
         <div id="nameInput" class="input-group-lg center-block helloInput">
             <p class="lead">What is your name?</p>
             <input id="user_name" type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1" value="" />
@@ -22,6 +23,26 @@
         <p id="response" class="lead text-center"></p>
 
         <p id="databaseNames" class="lead text-center"></p>
+        </div>
+        
+        <div class="container">
+            
+        <div id="courseInput" class="input-group-lg center-block helloInput">
+            <p class="lead">What is your course?</p>
+
+            <input id="course_name" type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1" value="" />
+        </div>
+        <!-- new stuff -->
+        <div id="ctopicInput" class="input-group-lg center-block helloInput">
+            <p class="lead">What is your course?</p>
+
+            <input id="topic_name" type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1" value="" />
+        </div>
+        
+        <p id="response2" class="lead text-center"></p>
+
+        <p id="databaseNames2" class="lead text-center"></p>
+        
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -49,6 +70,28 @@
                 });
             }
         });
+    	
+    	//Submit data when enter key is pressed
+        $('#course_name').keydown(function(e) {
+        	var name = $('#course_name').val();
+        	var topic = $('#topic_name').val();
+            if (e.which == 13 && name.length > 0) { //catch Enter key
+                $('#courseInput').hide();
+            	$('#ctopicInput').hide();
+           		$('#response2').html("loading...");
+            	//POST request to API to create a new visitor entry in the database
+                $.ajax({
+				  method: "POST",
+				  url: "./api/courses",
+				  contentType: "application/json",
+				  data: JSON.stringify({name: name })
+				})
+                .done(function(data) {	
+                    $('#response2').html(AntiXSS.sanitizeInput(data));
+                    getCourses();
+                });
+            }
+        });
         
         //Retreive all the visitors from the database
         function getNames(){
@@ -62,10 +105,22 @@
                   }
               });
           }
-          
+        
+        function getCourses(){
+            $.get("./api/courses")
+                .done(function(data) {
+                    if(data.length > 0) {
+                      data.forEach(function(element, index) {
+                        data[index] = AntiXSS.sanitizeInput(element)
+                      });
+                      $('#databaseNames2').html("Database contents: " + JSON.stringify(data));
+                    }
+                });
+            }
+            
           //Call getNames on page load.
           getNames();
-          
+          getCourses();
           
     </script>
 </body>
