@@ -1,3 +1,100 @@
 .helloInput {
   width: 200px;
 }
+
+.full-width {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0.5em;
+}
+
+h1.header {
+  font-size: 48px;
+}
+
+h5.header {
+  font-size: 24px;
+}
+
+h2.subhead {
+  font-size: 32px;
+}
+
+div.header {
+  color: whitesmoke;
+  background-color: #f18973;
+}
+
+.subhead {
+  color: whitesmoke;
+  background-color: #bc5a45;
+}
+
+#form-body {
+  margin-top: 16px;
+  border: 2px solid #bc5a45;
+  width: 92%;
+  background-color: #f4e1d2;
+  margin-botton: 20px;
+}
+
+.form-label {
+  margin-top: 32px;
+  color: #bc5a45;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.form-control {
+  padding: 0;
+}
+
+input[type='file'] {
+  opacity: 0;
+  height: 0;
+}
+
+#val {
+  font-size: 16px;
+  pointer-events: none;
+  color: #bc5a45;
+}
+
+.upload-button {
+  height: 46px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  display: block;
+  width: 100%;
+  color: #999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.upload-button:hover {
+  background-color: #f18973;
+  color: #f4e1d2;
+}
+
+.file-upload-container {
+  margin: 0;
+}
+
+/*
+  HEX: #b2b2b2 GRAY
+  HEX: #f4e1d2 TAN
+  HEX: #f18973 SALMON
+  HEX: #bc5a45 DARK SALMON
+  
+  */.helloInput {
+  width: 200px;
+}
+
+
