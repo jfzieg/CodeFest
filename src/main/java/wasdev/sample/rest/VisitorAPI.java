@@ -97,7 +97,7 @@ public class VisitorAPI extends Application {
     @POST
     @Produces("application/text")
     @Consumes("application/json")
-    public String newToDo(Student student) {
+    public String newToDo(Visitor visitor) {
       if(store == null) {
     	  return String.format("Hello %s!", visitor.getName());
       }
