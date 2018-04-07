@@ -1,5 +1,6 @@
 package application;
 
+import java.util.Scanner;
 
 public class Test {
 	public static void main(String[] args) {
@@ -16,5 +17,13 @@ public class Test {
 		class2.generateTags(Course.getDescription(text.toString()));
 		
 		NLU.getCatagory(courseDescription);
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Welcom to 5th Year");
+		System.out.println("Please enter your name.");
+		System.out.print("First:");
+		String fName = sc.nextLine();
+		String lName = sc.nextLine();
+		System.out.println("What would you like to do?");
+		System.out.println("(1)Add class\n(2) ");
 	}
 }

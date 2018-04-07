@@ -57,9 +57,9 @@ public class Course {
 				}
 			}
 		}
-		System.out.print("New tags added to " + courseName + ": ");
-		System.out.print(concepts);
-		System.out.println();
+//		System.out.print("New tags added to " + courseName + ": ");
+//		System.out.print(concepts);
+//		System.out.println();
 	}
 	
 	public void generateField(String courseDescription) {
